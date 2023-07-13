@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Build') {
+            steps {
+                sh 'docker build -t your-docker-registry/typing-app:latest .'
+            }
+        }
+        stage('Push') {
+            steps {
+                sh 'docker push your-docker-registry/typing-app:latest'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                withKubeConfig([credentialsId: 'your-kubernetes-credentials-id', kubeconfigFileVariable: 'KUBECONFIG']) {
+                    sh 'kubectl apply -f Kubernetes.yaml'
+                }
+            }
+        }
+    }
+}

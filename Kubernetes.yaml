@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: typing-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: typing-app
+  template:
+    metadata:
+      labels:
+        app: typing-app
+    spec:
+      containers:
+      - name: typing-app
+        image: your-docker-registry/typing-app:latest
+        ports:
+        - containerPort: 5000
+        env:
+        - name: MYSQL_HOST
+          value: your-mysql-host
+        - name: MYSQL_USER
+          value: your-mysql-user
+        - name: MYSQL_PASSWORD
+          value: your-mysql-password
+        - name: MYSQL_DB
+          value: your-mysql-database
+        - name: MAIL_SERVER
+          value: your-mail-server
+        - name: MAIL_PORT
+          value: your-mail-port
+        - name: MAIL_USE_SSL
+          value: "true"
+        - name: MAIL_USERNAME
+          value: your-mail-username
+        - name: MAIL_PASSWORD
+          value: your-mail-password
+        - name: MAIL_DEFAULT_SENDER
+          value: your-mail-sender
