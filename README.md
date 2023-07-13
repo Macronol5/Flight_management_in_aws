@@ -1,3 +1,3 @@
-# Flight_management_in_aws
+# Spell_Check_in_aws
 
 https://bit.ly/wileyproject
